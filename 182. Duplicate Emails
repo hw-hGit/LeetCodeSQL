@@ -1,0 +1,55 @@
+Table: Person
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| email       | varchar |
++-------------+---------+
+id is the primary key (column with unique values) for this table.
+Each row of this table contains an email. The emails will not contain uppercase letters.
+ 
+
+Write a solution to report all the duplicate emails. Note that it's guaranteed that the email field is not NULL.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+ 
+
+Example 1:
+
+Input: 
+Person table:
++----+---------+
+| id | email   |
++----+---------+
+| 1  | a@b.com |
+| 2  | c@d.com |
+| 3  | a@b.com |
++----+---------+
+Output: 
++---------+
+| Email   |
++---------+
+| a@b.com |
++---------+
+Explanation: a@b.com is repeated two times.
+
+Difficulty:
+The challenge involves identifying duplicate emails efficiently within the "Person" table using SQL. It requires grouping and filtering to find repeated email entries. 
+Ensuring accuracy while considering lowercase uniqueness and devising an optimal SQL query within the constraints constitutes the main difficulty.
+
+Idea:
+Utilize SQL's GROUP BY and HAVING clauses to identify duplicate emails by grouping and filtering the "Person" table based on the email column.
+
+Code:
+SELECT 
+    p.email AS Email
+FROM 
+    Person AS p
+GROUP BY 
+    p.email
+HAVING 
+    COUNT(p.email) > 1;
