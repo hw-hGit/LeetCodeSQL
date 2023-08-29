@@ -54,6 +54,29 @@ Output:
 | Allen     | Wang     | Null          | Null     |
 | Bob       | Alice    | New York City | New York |
 +-----------+----------+---------------+----------+
+
 Explanation: 
 There is no address in the address table for the personId = 1 so we return null in their city and state.
 addressId = 1 contains information about the address of personId = 2.
+
+Diffculty:
+In this question that we have to figure out how to combine the 2 different tables together.
+Idea:
+In this query, person_id is assumed to be the common column between the two tables that establishes the relationship. 
+The LEFT JOIN ensures that all rows from the "Person" table are included in the result, regardless of whether there is a matching row in the "Address" table. 
+If there's no corresponding address for a person, the columns from the "Address" table will contain NULL values in the result.
+
+Code:
+# Write your MySQL query statement below
+
+SELECT
+    p.firstName, p.lastName, adr.city, adr.state
+FROM 
+    person as p
+LEFT JOIN 
+    address as adr 
+ON
+    p.personID = adr.personID
+
+Link:https://leetcode.com/problems/combine-two-tables/
+
