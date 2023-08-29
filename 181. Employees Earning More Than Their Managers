@@ -1,0 +1,63 @@
+Table: Employee
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| name        | varchar |
+| salary      | int     |
+| managerId   | int     |
++-------------+---------+
+id is the primary key (column with unique values) for this table.
+Each row of this table indicates the ID of an employee, their name, salary, and the ID of their manager.
+ 
+
+Write a solution to find the employees who earn more than their managers.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+ 
+
+Example 1:
+
+Input: 
+Employee table:
++----+-------+--------+-----------+
+| id | name  | salary | managerId |
++----+-------+--------+-----------+
+| 1  | Joe   | 70000  | 3         |
+| 2  | Henry | 80000  | 4         |
+| 3  | Sam   | 60000  | Null      |
+| 4  | Max   | 90000  | Null      |
++----+-------+--------+-----------+
+Output: 
++----------+
+| Employee |
++----------+
+| Joe      |
++----------+
+Explanation: Joe is the only employee who earns more than his manager.
+
+Diffculty: 
+1. Data Extraction and Comparison: Extract employee data from the table, including names, salaries, and manager information. Compare each employee's salary with their manager's to identify those who earn more.
+
+2. Multi-Table Join: Perform a self-join using the `managerId` column to associate employees with their managers.
+
+3. Conditional Filtering: Develop the right condition to filter employees whose salary exceeds their manager's salary.
+
+4. Result Presentation: Display the employees who meet the criteria in the desired output format.
+
+Idea:
+To identify employees earning more than their managers, self-join the "Employee" table using "managerId," comparing salaries, and filter accordingly in SQL.
+
+Code:
+SELECT 
+    e.name AS Employee
+FROM 
+    Employee AS e
+JOIN 
+    Employee AS m ON e.managerId = m.id
+WHERE 
+    e.salary > m.salary;
