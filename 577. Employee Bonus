@@ -1,0 +1,55 @@
+Table: Employee
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| empId       | int     |
+| name        | varchar |
+| supervisor  | int     |
+| salary      | int     |
++-------------+---------+
+empId is the primary key column for this table.
+Each row of this table indicates the name and the ID of an employee in addition to their salary and the id of their manager.
+ 
+
+Table: Bonus
+
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| empId       | int  |
+| bonus       | int  |
++-------------+------+
+empId is the primary key column for this table.
+empId is a foreign key to empId from the Employee table.
+Each row of this table contains the id of an employee and their respective bonus.
+ 
+
+Write an SQL query to report the name and bonus amount of each employee with a bonus less than 1000.
+
+Return the result table in any order.
+
+The query result format is in the following example.
+
+Difficulty:
+The task involves querying and joining data from two tables, "Employee" and "Bonus," to retrieve the names and bonus amounts of employees with bonuses less than 1000. 
+The main difficulty lies in effectively performing the join based on empId, filtering rows based on bonus amount, displaying the required columns in the desired format and how to include the null value.
+
+Solution:
+To report the name and bonus amount of each employee with a bonus less than 1000, we can use an SQL query that joins the "Employee" table with the "Bonus" table and applies a filter based on the bonus amount.
+
+Code:
+
+SELECT
+    e.name , b.bonus
+FROM
+    employee as e
+LEFT JOIN
+    bonus as b
+ON 
+    e.empid = b.empid 
+WHERE 
+    b.bonus is null
+OR 
+    b.bonus <1000;
+
