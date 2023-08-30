@@ -1,0 +1,2 @@
+
+The problem entails identifying customers who have never placed any orders. This requires linking the "Customers" and "Orders" tables using the "customerId" relationship. The primary challenge involves distinguishing customers with no corresponding entries in the "Orders" table. Constructing an SQL query that properly joins, filters, and excludes customers who've made orders constitutes the main difficulty.
