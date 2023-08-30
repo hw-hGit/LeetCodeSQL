@@ -1,0 +1,37 @@
+Table: Weather
+
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| id            | int     |
+| recordDate    | date    |
+| temperature   | int     |
++---------------+---------+
+In SQL, id is the primary key for this table.
+This table contains information about the temperature on a certain day.
+ 
+
+Find all dates' Id with higher temperatures compared to its previous dates (yesterday).
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+Difficulty:
+The task involves identifying dates with higher temperatures compared to their previous dates (yesterday) from the "Weather" table. The challenge is to create an SQL query that calculates and compares temperatures for consecutive days, ensuring accurate identification of such dates. 
+Efficiently joining the table with itself and appropriately using date functions forms the main difficulty in solving this problem.
+
+Solution:
+To find dates with temperatures higher than their previous days (yesterday), use a self-join on the "Weather" table, comparing temperature values for consecutive days.
+
+Code:
+SELECT 
+    w1.ID
+FROM 
+    weather as w1 
+Join
+    weather as w2 
+ON
+    DATEDIFF(W1.recordDate, W2.recordDate)=1
+WHERE 
+    w1.temperature > w2.temperature
