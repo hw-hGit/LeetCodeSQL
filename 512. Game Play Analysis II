@@ -1,0 +1,40 @@
+Table: Activity
+
++--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| player_id    | int     |
+| device_id    | int     |
+| event_date   | date    |
+| games_played | int     |
++--------------+---------+
+(player_id, event_date) is the primary key (combination of columns with unique values) of this table.
+This table shows the activity of players of some games.
+Each row is a record of a player who logged in and played a number of games (possibly 0) before logging out on someday using some device.
+ 
+
+Write a solution to report the device that is first logged in for each player.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+Difficulty:
+The problem requires identifying the first device logged in for each player in the "Activity" table. The challenge is to construct an SQL query that efficiently determines the earliest event date for each player, then associates the corresponding device. 
+Handling multiple logins for each player and selecting the corresponding device forms the main difficulty.
+
+Solution:
+To report the first logged-in device for each player, utilize a subquery within an SQL query and combine with the window function.
+
+Code:
+SELECT 
+    t.player_id, t.device_id
+FROM 
+(
+    SELECT 
+        a1.player_id, a1.device_id, a1.event_date, dense_rank() over(partition by a1.player_id order by a1.event_date) as rk
+    FROM 
+        activity as a1 
+) as t 
+WHERE 
+    t.rk = 1 
