@@ -1,0 +1,39 @@
+Table: World
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| name        | varchar |
+| continent   | varchar |
+| area        | int     |
+| population  | int     |
+| gdp         | bigint  |
++-------------+---------+
+name is the primary key (column with unique values) for this table.
+Each row of this table gives information about the name of a country, the continent to which it belongs, its area, the population, and its GDP value.
+ 
+
+A country is big if:
+
+it has an area of at least three million (i.e., 3000000 km2), or
+it has a population of at least twenty-five million (i.e., 25000000).
+Write a solution to find the name, population, and area of the big countries.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+Difficulty:
+The problem involves identifying big countries based on certain criteria from the "World" table. The challenge is to create an SQL query that filters out countries with an area less than 3 million or a population less than 25 million and retrieves the required information (name, population, and area) for these big countries. 
+Formulating the appropriate filtering conditions and selecting the relevant columns poses the main difficulty.
+
+Solution:
+To find the name, population, and area of big countries based on the provided criteria, we can use an SQL query with a WHERE clause that combines the conditions for area and population. 
+
+Code:
+SELECT 
+    name, population, area
+FROM 
+    World
+WHERE 
+    area >= 3000000 OR population >= 25000000;
