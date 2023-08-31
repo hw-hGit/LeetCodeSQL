@@ -1,0 +1,34 @@
+Table: Customer
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| name        | varchar |
+| referee_id  | int     |
++-------------+---------+
+In SQL, id is the primary key column for this table.
+Each row of this table indicates the id of a customer, their name, and the id of the customer who referred them.
+ 
+
+Find the names of the customer that are not referred by the customer with id = 2.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+Difficulty:
+The challenge lies in creating an SQL query that filters out customers with referee_id equal to 2 and then retrieves the corresponding customer names. Properly using the WHERE clause and joins forms the main difficulty.
+
+Solution:
+To find the names of customers who were not referred by the customer with id = 2, we can use an SQL query with WHERE and OR. 
+
+Code:
+SELECT 
+    c.name
+FROM 
+    customer as c
+WHERE 
+    c.referee_id != 2
+OR 
+    c.referee_id IS NULL 
