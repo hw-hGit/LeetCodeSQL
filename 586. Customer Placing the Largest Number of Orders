@@ -1,0 +1,38 @@
+Table: Orders
+
++-----------------+----------+
+| Column Name     | Type     |
++-----------------+----------+
+| order_number    | int      |
+| customer_number | int      |
++-----------------+----------+
+order_number is the primary key (column with unique values) for this table.
+This table contains information about the order ID and the customer ID.
+ 
+
+Write a solution to find the customer_number for the customer who has placed the largest number of orders.
+
+The test cases are generated so that exactly one customer will have placed more orders than any other customer.
+
+The result format is in the following example.
+
+Difficulty:
+The problem involves identifying the customer with the highest number of orders from the "Orders" table. The main challenge is to create an SQL query that calculates the count of orders for each customer, identifies the one with the highest count, and retrieves the corresponding customer_number.
+
+Solution:
+To find the customer_number for the customer who has placed the largest number of orders and because there will be only one result, we can use an SQL query with the ORDER BY x DESC LIMIT 1 and a subquery.
+
+Code:
+SELECT 
+    t.customer_number
+FROM 
+(
+    SELECT 
+        o.customer_number, COUNT(*) as customer_order
+    FROM 
+        Orders as o 
+    GROUP BY 
+        o.customer_number
+    ORDER BY 
+        customer_order desc limit 1 
+) AS t
