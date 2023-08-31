@@ -15,3 +15,13 @@ Write a solution to find all the classes that have at least five students.
 Return the result table in any order.
 
 The result format is in the following example.
+
+Code:
+SELECT 
+    c.class
+FROM
+    courses as c
+GROUP BY 
+    c.class
+HAVING
+    count(c.student)>=5
